@@ -74,12 +74,13 @@ dependencies = [
 
 [[package]]
 name = "crypto-bigint"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "281d926f72b42bf3ba840b88cd53e39f36be9f66e34c8df3fb336372b3753d41"
+checksum = "bdc9968be9247fb330af911b91a58a267cbbcfcb8dea88debaf977738950dce5"
 dependencies = [
  "generic-array",
  "subtle",
+ "zeroize",
 ]
 
 [[package]]
@@ -148,7 +149,7 @@ name = "ecdsa"
 version = "0.12.1"
 dependencies = [
  "der 0.4.0",
- "elliptic-curve 0.10.1",
+ "elliptic-curve 0.10.3",
  "hex-literal",
  "hmac",
  "sha2",
@@ -203,9 +204,9 @@ dependencies = [
 
 [[package]]
 name = "elliptic-curve"
-version = "0.10.1"
+version = "0.10.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b4b6eb4853ca589eb02b325b0cff21e560180907a3640f8bfc8f5969ddd0c6ee"
+checksum = "dd035cb119cbc25e91bb6f1abbfe341388ddb47a1fe5e77ca6bcbe231e87580b"
 dependencies = [
  "crypto-bigint",
  "ff",
