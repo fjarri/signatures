@@ -74,12 +74,14 @@ dependencies = [
 
 [[package]]
 name = "crypto-bigint"
-version = "0.2.0"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "281d926f72b42bf3ba840b88cd53e39f36be9f66e34c8df3fb336372b3753d41"
+checksum = "43b0ca41e2a75a407a44812f110ecd40e1efacb8993f612746491e12d5b929fe"
 dependencies = [
  "generic-array",
+ "rand_core 0.6.2",
  "subtle",
+ "zeroize",
 ]
 
 [[package]]
@@ -107,15 +109,6 @@ dependencies = [
 
 [[package]]
 name = "der"
-version = "0.3.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2eeb9d92785d1facb50567852ce75d0858630630e7eabea59cf7eb7474051087"
-dependencies = [
- "typenum",
-]
-
-[[package]]
-name = "der"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49f215f706081a44cb702c71c39a52c05da637822e9c1645a50b7202689e982d"
@@ -134,24 +127,24 @@ dependencies = [
 
 [[package]]
 name = "ecdsa"
-version = "0.11.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "34d33b390ab82f2e1481e331dbd0530895640179d2128ef9a79cc690b78d1eba"
+version = "0.12.1"
 dependencies = [
- "der 0.3.5",
- "elliptic-curve 0.9.12",
+ "der",
+ "elliptic-curve",
+ "hex-literal",
+ "hmac",
+ "sha2",
  "signature",
 ]
 
 [[package]]
 name = "ecdsa"
-version = "0.12.1"
+version = "0.12.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "05cb0ed2d2ce37766ac86c05f66973ace8c51f7f1533bedce8fb79e2b54b3f14"
 dependencies = [
- "der 0.4.0",
- "elliptic-curve 0.10.1",
- "hex-literal",
- "hmac",
- "sha2",
+ "der",
+ "elliptic-curve",
  "signature",
 ]
 
@@ -192,20 +185,9 @@ dependencies = [
 
 [[package]]
 name = "elliptic-curve"
-version = "0.9.12"
+version = "0.10.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c13e9b0c3c4170dcc2a12783746c4205d98e18957f57854251eea3f9750fe005"
-dependencies = [
- "generic-array",
- "rand_core 0.6.2",
- "subtle",
-]
-
-[[package]]
-name = "elliptic-curve"
-version = "0.10.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b4b6eb4853ca589eb02b325b0cff21e560180907a3640f8bfc8f5969ddd0c6ee"
+checksum = "beca177dcb8eb540133e7680baff45e7cc4d93bf22002676cec549f82343721b"
 dependencies = [
  "crypto-bigint",
  "ff",
@@ -246,7 +228,18 @@ checksum = "8fc3cb4d91f53b50155bdcfd23f6a4c39ae1969c2ae85982b135750cccaf5fce"
 dependencies = [
  "cfg-if",
  "libc",
- "wasi",
+ "wasi 0.9.0+wasi-snapshot-preview1",
+]
+
+[[package]]
+name = "getrandom"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7fcd999463524c52659517fe2cea98493cfe485d10565e7b0fb07dbba7ad2753"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "wasi 0.10.2+wasi-snapshot-preview1",
 ]
 
 [[package]]
@@ -320,22 +313,22 @@ checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
 
 [[package]]
 name = "p256"
-version = "0.8.1"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2f05f5287453297c4c16af5e2b04df8fd2a3008d70f252729650bc6d7ace5844"
+checksum = "d053368e1bae4c8a672953397bd1bd7183dde1c72b0b7612a15719173148d186"
 dependencies = [
- "ecdsa 0.11.1",
- "elliptic-curve 0.9.12",
+ "ecdsa 0.12.2",
+ "elliptic-curve",
 ]
 
 [[package]]
 name = "p384"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94e3bfd7d8f202c293072de214ad93480b533985bfee4fa4a13cfdd185fab13d"
+checksum = "f23bc88c404ccc881c8a1ad62ba5cd7d336a64ecbf46de4874f2ad955f67b157"
 dependencies = [
- "ecdsa 0.11.1",
- "elliptic-curve 0.9.12",
+ "ecdsa 0.12.2",
+ "elliptic-curve",
 ]
 
 [[package]]
@@ -345,7 +338,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "09d156817ae0125e8aa5067710b0db24f0984830614f99875a70aa5e3b74db69"
 dependencies = [
  "base64ct",
- "der 0.4.0",
+ "der",
  "spki",
  "zeroize",
 ]
@@ -380,7 +373,7 @@ version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a6b1679d49b24bbfe0c803429aa1874472f50d9b363131f0e89fc356b544d03"
 dependencies = [
- "getrandom",
+ "getrandom 0.1.16",
  "libc",
  "rand_chacha",
  "rand_core 0.5.1",
@@ -403,7 +396,7 @@ version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
 dependencies = [
- "getrandom",
+ "getrandom 0.1.16",
 ]
 
 [[package]]
@@ -411,6 +404,9 @@ name = "rand_core"
 version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "34cf66eb183df1c5876e2dcf6b13d57340741e8dc255b48e40a26de954d06ae7"
+dependencies = [
+ "getrandom 0.2.3",
+]
 
 [[package]]
 name = "rand_hc"
@@ -438,13 +434,13 @@ dependencies = [
 
 [[package]]
 name = "ring-compat"
-version = "0.2.1"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aa5d9fa3ce9ca8fadd287d21da5320dbf6de6a08908acdf95247aeadc2c41964"
+checksum = "d14976b5cc21a752139864e8dbc357270d0518294c29583d9670c0eb840cb856"
 dependencies = [
  "aead",
  "digest",
- "ecdsa 0.11.1",
+ "ecdsa 0.12.2",
  "ed25519 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "generic-array",
  "opaque-debug",
@@ -495,7 +491,7 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "987637c5ae6b3121aba9d513f869bd2bff11c4cc086c22473befd6649c0bd521"
 dependencies = [
- "der 0.4.0",
+ "der",
 ]
 
 [[package]]
@@ -556,6 +552,12 @@ name = "wasi"
 version = "0.9.0+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
+
+[[package]]
+name = "wasi"
+version = "0.10.2+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd6fbd9a79829dd1ad0cc20627bf1ed606756a7f77edff7b66b7064f9cb327c6"
 
 [[package]]
 name = "wasm-bindgen"
