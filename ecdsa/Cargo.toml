@@ -22,7 +22,7 @@ signature = { version = ">=1.5, <1.7", default-features = false, features = ["ra
 # optional dependencies
 der = { version = "0.6", optional = true }
 rfc6979 = { version = "0.3", optional = true, path = "../rfc6979" }
-serdect = { version = "0.1", optional = true, default-features = false, features = ["alloc"] }
+serdect = { version = "0.2", optional = true, default-features = false, features = ["alloc"] }
 
 [dev-dependencies]
 elliptic-curve = { version = "0.12", default-features = false, features = ["dev"] }
